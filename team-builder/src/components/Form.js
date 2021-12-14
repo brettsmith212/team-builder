@@ -1,13 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
-function Form() {
-  const FormContainer = styled.section`
-    margin-top: 4rem;
+const FormContainer = styled.section`
+  width: 50%;
+  background-color: #ced4da;
+  margin-top: 4rem;
+  border-radius: 10px;
+
+  form {
+    padding: 4rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
 
     label {
       margin-bottom: 2rem;
@@ -18,43 +22,62 @@ function Form() {
       margin-left: 2rem;
       width: 10rem;
     }
-  `;
+
+    button {
+      padding: 0.5rem 4rem;
+      cursor: pointer;
+    }
+  }
+`;
+
+function Form(props) {
+  const { values, update, submit } = props;
 
   const onChange = (e) => {
     const { value, name } = e.target;
     console.log(name, value);
+    update(name, value);
   };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    submit();
+  };
+
   return (
     <FormContainer>
-      <label>
-        Name:
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter Name"
-          value={"empty"}
-          onChange={onChange}
-        />
-      </label>
-      <label>
-        Email:
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter Email"
-          value={"empty"}
-          onChange={onChange}
-        />
-      </label>
-      <label>
-        Role:
-        <select value={"empty"} name="role" onChange={onChange}>
-          <option value="">--- Select a Role ---</option>
-          <option value="BackendEngineer">Backend Engineer</option>
-          <option value="FrontendEngineer">Frontend Engineer</option>
-          <option value="Designer">Designer</option>
-        </select>
-      </label>
+      <form onSubmit={onSubmit}>
+        <label>
+          Name:
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter Name"
+            value={values.name}
+            onChange={onChange}
+          />
+        </label>
+        <label>
+          Email:
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter Email"
+            value={values.email}
+            onChange={onChange}
+          />
+        </label>
+        <label>
+          Role:
+          <select value={values.role} name="role" onChange={onChange}>
+            <option value="">--- Select a Role ---</option>
+            <option value="BackendEngineer">Backend Engineer</option>
+            <option value="FrontendEngineer">Frontend Engineer</option>
+            <option value="Designer">Designer</option>
+          </select>
+        </label>
+        <button>Submit</button>
+      </form>
     </FormContainer>
   );
 }
