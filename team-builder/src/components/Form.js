@@ -35,7 +35,6 @@ function Form(props) {
 
   const onChange = (e) => {
     const { value, name } = e.target;
-    console.log(name, value);
     update(name, value);
   };
 
@@ -71,8 +70,8 @@ function Form(props) {
           Role:
           <select value={values.role} name="role" onChange={onChange}>
             <option value="">--- Select a Role ---</option>
-            <option value="BackendEngineer">Backend Engineer</option>
-            <option value="FrontendEngineer">Frontend Engineer</option>
+            <option value="Backend Engineer">Backend Engineer</option>
+            <option value="Frontend Engineer">Frontend Engineer</option>
             <option value="Designer">Designer</option>
           </select>
         </label>
