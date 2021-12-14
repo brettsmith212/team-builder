@@ -6,10 +6,15 @@ import styled from "styled-components";
 function App() {
   const [teamMember, setTeamMember] = useState([]);
 
+  const AppContainer = styled.main`
+    display: flex;
+    justify-content: center;
+  `;
+
   return (
-    <div className="App">
+    <AppContainer>
       <Form />
-    </div>
+    </AppContainer>
   );
 }
 
